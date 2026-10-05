@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        http-equiv="X-UA-Compatible"
+        content="ie=edge"
+    >
+
+    <title>My Library</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+</head>
+
+
+<body>
+
+<div class="library">
+
+
+    <!-- =====================================
+         HEADER
+         ===================================== -->
+
+    <header>
+
+        <h1>My Library</h1>
+
+        <p>
+            A quiet collection of books, carefully catalogued.
+        </p>
+
+    </header>
+
+
+    <!-- =====================================
+         NAVIGATION
+         ===================================== -->
+
+    <nav class="navigation">
+
+        <a href="/add_author">
+            ＋ Add Author
+        </a>
+
+        <a href="/add_book">
+            ＋ Add Book
+        </a>
+
+    </nav>
+
+
+    <!-- =====================================
+         DELETE MESSAGE
+         ===================================== -->
+
+    {% if deleted %}
+
+        <div class="message">
+
+            <strong>{{ deleted }}</strong>
+            was successfully deleted.
+
+        </div>
+
+    {% endif %}
+
+
+    <!-- =====================================
+         SEARCH AND SORT
+         ===================================== -->
+
+    <section class="catalogue-tools">
+
+        <h2>Library Catalogue</h2>
+
+
+        <form
+            action="/"
+            method="GET"
+            class="search-row"
+        >
+
+            <input
+                type="text"
+                name="search"
+                placeholder="Search by title..."
+                value="{{ search }}"
+            >
+
+            <button type="submit">
+                Search
+            </button>
+
+        </form>
+
+
+        {% if search %}
+
+            <p class="search-result">
+
+                Search results for:
+                <strong>{{ search }}</strong>
+
+                —
+
+                <a href="/">
+                    Show all books
+                </a>
+
+            </p>
+
+        {% endif %}
+
+
+        <div class="sort-options">
+
+            <strong>Sort:</strong>
+
+            <a href="/?sort=title">
+                Title
+            </a>
+
+            <a href="/?sort=author">
+                Author
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================
+         BOOKS
+         ===================================== -->
+
+    {% if books %}
+
+        <section class="book-grid">
+
+
+            {% for book in books %}
+
+                <article class="book-card">
+
+
+                    <!-- Book cover -->
+
+                    <img
+                        class="book-cover"
+                        src="https://covers.openlibrary.org/b/isbn/{{ book.isbn }}-L.jpg"
+                        alt="Cover of {{ book.title }}"
+                    >
+
+
+                    <!-- Book information -->
+
+                    <div class="book-info">
+
+
+                        <!-- Title -->
+
+                        <h2 class="book-title">
+                            {{ book.title }}
+                        </h2>
+
+
+                        <!-- Author -->
+
+                        <p class="book-author">
+                            {{ book.author.name }}
+                        </p>
+
+
+                        <!-- ISBN and publication year -->
+
+                        <div class="book-details">
+
+                            <div>
+                                <strong>ISBN:</strong>
+                                {{ book.isbn }}
+                            </div>
+
+                            <div>
+                                <strong>Published:</strong>
+                                {{ book.publication_year }}
+                            </div>
+
+                        </div>
+
+
+                        <!-- Delete -->
+
+                        <form
+                            action="/book/{{ book.id }}/delete"
+                            method="POST"
+                            class="delete-form"
+                        >
+
+                            <button
+                                type="submit"
+                                class="delete-button"
+                                onclick="return confirm('Delete this book?');"
+                            >
+                                Delete
+                            </button>
+
+                        </form>
+
+
+                    </div>
+
+                </article>
+
+            {% endfor %}
+
+
+        </section>
+
+
+    {% else %}
+
+
+        <!-- =====================================
+             NO BOOKS FOUND
+             ===================================== -->
+
+        <div class="empty-library">
+
+            <h2>No books found</h2>
+
+
+            {% if search %}
+
+                <p>
+
+                    No books match your search for
+                    <strong>{{ search }}</strong>.
+
+                </p>
+
+                <p>
+
+                    <a href="/">
+                        Show all books
+                    </a>
+
+                </p>
+
+
+            {% else %}
+
+                <p>
+                    Your library is currently empty.
+                </p>
+
+                <p>
+
+                    <a href="/add_book">
+                        Add your first book
+                    </a>
+
+                </p>
+
+            {% endif %}
+
+
+        </div>
+
+
+    {% endif %}
+
+
+    <!-- =====================================
+         FOOTER
+         ===================================== -->
+
+    <footer>
+
+        <p>
+            Bibliotheca — Catalogue of the Private Collection
+        </p>
+
+    </footer>
+
+
+</div>
+
+</body>
+
+</html>

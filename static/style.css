@@ -1,0 +1,708 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+
+    background:
+        linear-gradient(
+            rgba(60, 42, 28, 0.08),
+            rgba(60, 42, 28, 0.08)
+        ),
+        #e4d5b8;
+
+    color: #3d2b1f;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+}
+
+
+/* =========================================
+   MAIN LIBRARY
+   ========================================= */
+
+.library {
+    max-width: 1200px;
+
+    margin: 0 auto;
+
+    padding: 40px 25px 60px;
+}
+
+
+/* =========================================
+   HEADER
+   ========================================= */
+
+header {
+    text-align: center;
+
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+
+    border-bottom: 3px double #704c32;
+}
+
+header h1 {
+    margin: 0;
+
+    font-size: 42px;
+
+    letter-spacing: 2px;
+
+    color: #4a2f1c;
+}
+
+header p {
+    margin: 8px 0 0;
+
+    font-style: italic;
+
+    color: #76563d;
+}
+
+
+/* =========================================
+   NAVIGATION
+   ========================================= */
+
+.navigation {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 12px;
+
+    margin-bottom: 30px;
+
+    flex-wrap: wrap;
+}
+
+.navigation a {
+    display: inline-block;
+
+    padding: 9px 16px;
+
+    background: #65452f;
+
+    color: #f5ead5;
+
+    text-decoration: none;
+
+    border: 1px solid #4b3020;
+
+    border-radius: 3px;
+
+    font-size: 15px;
+}
+
+.navigation a:hover {
+    background: #4e3423;
+}
+
+
+/* =========================================
+   CATALOGUE / SEARCH
+   ========================================= */
+
+.catalogue-tools {
+    background: #f1e5cc;
+
+    border: 1px solid #a68a68;
+
+    border-radius: 4px;
+
+    padding: 20px;
+
+    margin-bottom: 30px;
+
+    box-shadow:
+        0 3px 8px rgba(50, 30, 15, 0.15);
+}
+
+.catalogue-tools h2 {
+    margin-top: 0;
+
+    font-size: 21px;
+
+    color: #563a25;
+}
+
+
+/* Search */
+
+.search-row {
+    display: flex;
+
+    gap: 8px;
+
+    max-width: 650px;
+}
+
+.search-row input {
+    flex: 1;
+
+    padding: 10px 12px;
+
+    border: 1px solid #9a7c5b;
+
+    border-radius: 3px;
+
+    background: #fffaf0;
+
+    color: #3d2b1f;
+
+    font-family: inherit;
+
+    font-size: 15px;
+}
+
+.search-row input:focus {
+    outline: none;
+
+    border-color: #704b31;
+
+    box-shadow:
+        0 0 0 2px rgba(112, 75, 49, 0.12);
+}
+
+.search-row button {
+    padding: 10px 18px;
+
+    border: 1px solid #4b3020;
+
+    border-radius: 3px;
+
+    background: #704b31;
+
+    color: #fff5e4;
+
+    font-family: inherit;
+
+    cursor: pointer;
+}
+
+.search-row button:hover {
+    background: #533621;
+}
+
+
+/* Search result */
+
+.search-result {
+    margin-top: 15px;
+
+    margin-bottom: 0;
+
+    color: #674a34;
+}
+
+.search-result a {
+    color: #70452a;
+}
+
+
+/* Sorting */
+
+.sort-options {
+    margin-top: 15px;
+}
+
+.sort-options a {
+    color: #70452a;
+
+    margin-right: 18px;
+
+    text-decoration: none;
+
+    font-weight: bold;
+}
+
+.sort-options a:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================================
+   DELETE MESSAGE
+   ========================================= */
+
+.message {
+    background: #d8c7a8;
+
+    border-left: 5px solid #70452a;
+
+    padding: 12px 15px;
+
+    margin-bottom: 25px;
+}
+
+
+/* =========================================
+   BOOK GRID
+   ========================================= */
+
+.book-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fill, minmax(470px, 1fr));
+
+    gap: 24px;
+}
+
+
+/* =========================================
+   BOOK CARD
+   ========================================= */
+
+.book-card {
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 20px;
+
+    background: #f4e8d0;
+
+    border: 1px solid #a58a68;
+
+    border-radius: 4px;
+
+    padding: 18px;
+
+    box-shadow:
+        0 4px 8px rgba(55, 35, 20, 0.18),
+        inset 0 0 20px rgba(110, 75, 40, 0.04);
+
+    transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+.book-card:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 7px 14px rgba(55, 35, 20, 0.25),
+        inset 0 0 20px rgba(110, 75, 40, 0.05);
+}
+
+
+/* =========================================
+   BOOK COVER
+   ========================================= */
+
+.book-cover {
+    flex: 0 0 135px;
+
+    width: 135px;
+
+    height: 205px;
+
+    object-fit: contain;
+
+    display: block;
+
+    background: #d9c8aa;
+
+    border: 1px solid #a48a69;
+
+    box-shadow:
+        2px 3px 6px rgba(55, 35, 20, 0.20);
+}
+
+
+/* =========================================
+   BOOK INFORMATION
+   ========================================= */
+
+.book-info {
+    flex: 1;
+
+    min-width: 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    min-height: 205px;
+}
+
+
+/* =========================================
+   TITLE
+   ========================================= */
+
+.book-title {
+    margin: 0 0 8px;
+
+    font-size: 22px;
+
+    line-height: 1.25;
+
+    color: #4b2f1d;
+
+    overflow-wrap: anywhere;
+}
+
+
+/* =========================================
+   AUTHOR
+   ========================================= */
+
+.book-author {
+    margin: 0 0 18px;
+
+    color: #704b31;
+
+    font-style: italic;
+
+    font-size: 17px;
+}
+
+
+/* =========================================
+   BOOK DETAILS
+   ========================================= */
+
+.book-details {
+    font-size: 14px;
+
+    line-height: 1.7;
+
+    color: #5d4633;
+}
+
+.book-details strong {
+    color: #49301f;
+}
+
+
+/* =========================================
+   DELETE BUTTON
+   ========================================= */
+
+.delete-form {
+    margin-top: auto;
+
+    padding-top: 12px;
+
+    border-top: 1px solid #c2aa89;
+}
+
+.delete-button {
+    width: 100%;
+
+    padding: 7px;
+
+    background: transparent;
+
+    color: #7b3f32;
+
+    border: 1px solid #a8796e;
+
+    border-radius: 3px;
+
+    font-family: inherit;
+
+    cursor: pointer;
+}
+
+.delete-button:hover {
+    background: #7b3f32;
+
+    color: #fff4e5;
+}
+
+
+/* =========================================
+   EMPTY LIBRARY
+   ========================================= */
+
+.empty-library {
+    text-align: center;
+
+    padding: 50px 20px;
+
+    background: #f1e5cc;
+
+    border: 1px dashed #9d815f;
+
+    color: #6d5139;
+}
+
+.empty-library a {
+    color: #70452a;
+}
+
+
+/* =========================================
+   FOOTER
+   ========================================= */
+
+footer {
+    margin-top: 45px;
+
+    padding-top: 15px;
+
+    border-top: 3px double #704c32;
+
+    text-align: center;
+
+    color: #80654b;
+
+    font-size: 14px;
+
+    font-style: italic;
+}
+
+
+/* =========================================
+   TABLET
+   ========================================= */
+
+@media (max-width: 1000px) {
+
+    .book-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 600px) {
+
+    .library {
+        padding: 25px 15px 40px;
+    }
+
+    header h1 {
+        font-size: 32px;
+    }
+
+    .search-row {
+        flex-direction: column;
+    }
+
+    .search-row button {
+        width: 100%;
+    }
+
+
+    /* Stack the book on small screens */
+
+    .book-card {
+        display: block;
+
+        padding: 15px;
+    }
+
+    .book-cover {
+        width: 130px;
+
+        height: 195px;
+
+        margin: 0 auto 18px;
+    }
+
+    .book-info {
+        min-height: 0;
+    }
+
+    .book-title {
+        font-size: 20px;
+    }
+
+    .book-author {
+        font-size: 16px;
+    }
+
+    .delete-form {
+        margin-top: 18px;
+    }
+}
+
+
+/* =========================================
+   VERY SMALL SCREENS
+   ========================================= */
+
+@media (max-width: 400px) {
+
+    .book-cover {
+        width: 115px;
+
+        height: 175px;
+    }
+
+    .book-title {
+        font-size: 18px;
+    }
+}
+
+/* =========================================
+   ADD AUTHOR / ADD BOOK FORMS
+   ========================================= */
+
+.form-container {
+    max-width: 700px;
+
+    margin: 0 auto 40px;
+
+    padding: 30px;
+
+    background: #f4e8d0;
+
+    border: 1px solid #a58a68;
+
+    border-radius: 4px;
+
+    box-shadow:
+        0 4px 10px rgba(55, 35, 20, 0.18),
+        inset 0 0 20px rgba(110, 75, 40, 0.04);
+}
+
+.form-container h2 {
+    margin-top: 0;
+
+    margin-bottom: 25px;
+
+    padding-bottom: 12px;
+
+    border-bottom: 1px solid #c2aa89;
+
+    color: #563a25;
+
+    font-size: 24px;
+}
+
+
+/* =========================================
+   FORM
+   ========================================= */
+
+.library-form {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 7px;
+}
+
+.form-group label {
+    font-weight: bold;
+
+    color: #49301f;
+
+    font-size: 16px;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+
+    padding: 11px 12px;
+
+    background: #fffaf0;
+
+    color: #3d2b1f;
+
+    border: 1px solid #9a7c5b;
+
+    border-radius: 3px;
+
+    font-family: inherit;
+
+    font-size: 15px;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+
+    border-color: #704b31;
+
+    box-shadow:
+        0 0 0 2px rgba(112, 75, 49, 0.12);
+}
+
+.form-group small {
+    color: #80654b;
+
+    font-size: 13px;
+
+    font-style: italic;
+}
+
+
+/* =========================================
+   FORM BUTTON
+   ========================================= */
+
+.form-button {
+    width: 100%;
+
+    margin-top: 5px;
+
+    padding: 11px 18px;
+
+    background: #65452f;
+
+    color: #f5ead5;
+
+    border: 1px solid #4b3020;
+
+    border-radius: 3px;
+
+    font-family: inherit;
+
+    font-size: 16px;
+
+    cursor: pointer;
+}
+
+.form-button:hover {
+    background: #4e3423;
+}
+
+
+/* =========================================
+   FORM MESSAGE
+   ========================================= */
+
+.form-container .message {
+    margin-bottom: 25px;
+}
+
+
+/* =========================================
+   FORM MOBILE
+   ========================================= */
+
+@media (max-width: 600px) {
+
+    .form-container {
+        padding: 20px 15px;
+    }
+
+    .form-container h2 {
+        font-size: 21px;
+    }
+
+}

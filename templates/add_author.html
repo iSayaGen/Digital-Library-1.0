@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        http-equiv="X-UA-Compatible"
+        content="ie=edge"
+    >
+
+    <title>Add Author</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+</head>
+
+<body>
+
+<div class="library">
+
+    <header>
+        <h1>Add Author</h1>
+
+        <p>
+            Add a new author to your private collection.
+        </p>
+    </header>
+
+
+    <nav class="navigation">
+
+        <a href="/">
+            ← Back to Library
+        </a>
+
+        <a href="/add_book">
+            ＋ Add Book
+        </a>
+
+    </nav>
+
+
+    <section class="form-container">
+
+        <h2>Author Information</h2>
+
+        {% if success %}
+
+            <div class="message">
+                {{ success }}
+            </div>
+
+        {% endif %}
+
+
+        <form
+            action="/add_author"
+            method="POST"
+            class="library-form"
+        >
+
+            <div class="form-group">
+
+                <label for="name">
+                    Author Name
+                </label>
+
+                <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    placeholder="e.g. Hermann Hesse"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="birth_date">
+                    Birth Date
+                </label>
+
+                <input
+                    type="date"
+                    id="birth_date"
+                    name="birth_date"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="date_of_death">
+                    Date of Death
+                </label>
+
+                <input
+                    type="date"
+                    id="date_of_death"
+                    name="date_of_death"
+                >
+
+                <small>
+                    Leave blank if the author is still living.
+                </small>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="form-button"
+            >
+                Add Author
+            </button>
+
+        </form>
+
+    </section>
+
+
+    <footer>
+
+        <p>
+            Bibliotheca — Catalogue of the Private Collection
+        </p>
+
+    </footer>
+
+</div>
+
+</body>
+
+</html>

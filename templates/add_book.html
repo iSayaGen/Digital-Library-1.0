@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        http-equiv="X-UA-Compatible"
+        content="ie=edge"
+    >
+
+    <title>Add Book</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+</head>
+
+<body>
+
+<div class="library">
+
+    <header>
+        <h1>Add Book</h1>
+
+        <p>
+            Add a new volume to your private collection.
+        </p>
+    </header>
+
+
+    <nav class="navigation">
+
+        <a href="/">
+            ← Back to Library
+        </a>
+
+        <a href="/add_author">
+            ＋ Add Author
+        </a>
+
+    </nav>
+
+
+    <section class="form-container">
+
+        <h2>Book Information</h2>
+
+        {% if success %}
+
+            <div class="message">
+                {{ success }}
+            </div>
+
+        {% endif %}
+
+
+        <form
+            action="/add_book"
+            method="POST"
+            class="library-form"
+        >
+
+            <div class="form-group">
+
+                <label for="isbn">
+                    ISBN
+                </label>
+
+                <input
+                    type="text"
+                    id="isbn"
+                    name="isbn"
+                    placeholder="e.g. 9783518367063"
+                    required
+                >
+
+                <small>
+                    The ISBN is used to find the book cover.
+                </small>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="title">
+                    Book Title
+                </label>
+
+                <input
+                    type="text"
+                    id="title"
+                    name="title"
+                    placeholder="e.g. Demian"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="publication_year">
+                    Original Publication Year
+                </label>
+
+                <input
+                    type="number"
+                    id="publication_year"
+                    name="publication_year"
+                    placeholder="e.g. 1919"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="author_id">
+                    Author
+                </label>
+
+                <select
+                    id="author_id"
+                    name="author_id"
+                    required
+                >
+
+                    <option value="" disabled selected>
+                        Select an author
+                    </option>
+
+                    {% for author in authors %}
+
+                        <option value="{{ author.id }}">
+                            {{ author.name }}
+                        </option>
+
+                    {% endfor %}
+
+                </select>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="form-button"
+            >
+                Add Book
+            </button>
+
+        </form>
+
+    </section>
+
+
+    <footer>
+
+        <p>
+            Bibliotheca — Catalogue of the Private Collection
+        </p>
+
+    </footer>
+
+</div>
+
+</body>
+
+</html>
