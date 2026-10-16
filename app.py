@@ -1,4 +1,4 @@
-import os
+from pathlib import Path
 from datetime import datetime
 from flask import Flask, redirect, render_template, request, url_for
 from data_models import Author, Book, db
@@ -7,10 +7,11 @@ from data_models import Author, Book, db
 app = Flask(__name__)
 
 
-basedir = os.path.abspath(os.path.dirname(__file__))
+BASE_DIR = Path(__file__).resolve().parent
+DATABASE_PATH = BASE_DIR / "data" / "library.sqlite"
 
 app.config["SQLALCHEMY_DATABASE_URI"] = (
-    f"sqlite:///{os.path.join(basedir, 'data/library.sqlite')}"
+    f"sqlite:///{DATABASE_PATH.as_posix()}"
 )
 
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
