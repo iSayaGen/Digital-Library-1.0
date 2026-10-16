@@ -63,21 +63,47 @@ def home():
 
 @app.route("/add_author", methods=["GET", "POST"])
 def add_author():
-    """Display the author form and add a new author."""
+    """Display the author form and add a unique author."""
 
     if request.method == "POST":
-        name = request.form["name"]
+        name = request.form.get("name", "").strip()
+
+        if not name:
+            return render_template(
+                "add_author.html",
+                error="Author name cannot be empty."
+            )
+
+        if len(name) > 100:
+            return render_template(
+                "add_author.html",
+                error="Author name must be 100 characters or fewer."
+            )
+
+        existing_author = Author.query.filter(
+            db.func.lower(Author.name) == name.lower()
+        ).first()
+
+        if existing_author:
+            return render_template(
+                "add_author.html",
+                error="An author with this name already exists."
+            )
 
         birth_date = datetime.strptime(
             request.form["birth_date"],
             "%Y-%m-%d"
         ).date()
 
+        date_of_death_input = request.form.get(
+            "date_of_death", ""
+        ).strip()
+
         date_of_death = None
 
-        if request.form["date_of_death"]:
+        if date_of_death_input:
             date_of_death = datetime.strptime(
-                request.form["date_of_death"],
+                date_of_death_input,
                 "%Y-%m-%d"
             ).date()
 
