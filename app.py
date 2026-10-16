@@ -90,10 +90,17 @@ def add_author():
                 error="An author with this name already exists."
             )
 
-        birth_date = datetime.strptime(
-            request.form["birth_date"],
-            "%Y-%m-%d"
-        ).date()
+        birth_date_input = request.form.get(
+            "birth_date", ""
+        ).strip()
+
+        birth_date = None
+
+        if birth_date_input:
+            birth_date = datetime.strptime(
+                birth_date_input,
+                "%Y-%m-%d"
+            ).date()
 
         date_of_death_input = request.form.get(
             "date_of_death", ""
