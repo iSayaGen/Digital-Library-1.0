@@ -60,6 +60,14 @@
 
         {% endif %}
 
+        {% if error %}
+
+            <div class="message">
+                {{ error }}
+            </div>
+
+        {% endif %}
+
 
         <form
             action="/add_book"

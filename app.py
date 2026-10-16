@@ -133,21 +133,46 @@ def add_author():
 
 @app.route("/add_book", methods=["GET", "POST"])
 def add_book():
-    """Display the book form and add a new book."""
+    """Display the book form and add a book with a unique ISBN."""
 
-    authors = Author.query.all()
+    authors = Author.query.order_by(Author.name).all()
 
     if request.method == "POST":
-        isbn = request.form["isbn"]
-        title = request.form["title"]
+        isbn = request.form.get("isbn", "").strip()
+        title = request.form.get("title", "").strip()
 
-        publication_year = int(
-            request.form["publication_year"]
-        )
+        if not isbn:
+            return render_template(
+                "add_book.html",
+                authors=authors,
+                error="ISBN cannot be empty."
+            )
 
-        author_id = int(
-            request.form["author_id"]
-        )
+        if len(isbn) > 20:
+            return render_template(
+                "add_book.html",
+                authors=authors,
+                error="ISBN must be 20 characters or fewer."
+            )
+
+        if not title:
+            return render_template(
+                "add_book.html",
+                authors=authors,
+                error="Book title cannot be empty."
+            )
+
+        existing_book = Book.query.filter_by(isbn=isbn).first()
+
+        if existing_book:
+            return render_template(
+                "add_book.html",
+                authors=authors,
+                error="A book with this ISBN already exists."
+            )
+
+        publication_year = int(request.form["publication_year"])
+        author_id = int(request.form["author_id"])
 
         book = Book(
             isbn=isbn,
